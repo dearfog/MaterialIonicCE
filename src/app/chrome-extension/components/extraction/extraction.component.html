@@ -1,3 +1,10 @@
-<p>
-  extraction works!
-</p>
+<mat-list>
+    <h3 mat-subheader>Folders</h3>
+    <mat-list-item *ngFor="let link of links; let i = index">
+        <mat-icon mat-list-icon>folder</mat-icon>
+        <h4 mat-line>{{i}}</h4>
+        <p mat-line> {{link}} </p>
+        <mat-divider></mat-divider>    
+        <button mat-fab (click)="download(i)"><mat-icon>arrow_downward</mat-icon></button>
+    </mat-list-item>
+</mat-list>

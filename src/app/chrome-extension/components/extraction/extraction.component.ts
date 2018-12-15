@@ -10,16 +10,25 @@ declare var chrome: any;
 })
 export class ExtractionComponent implements OnInit {
 
-    constructor() { }
+    links:Array<string> = []
 
+    constructor() { }
+    
     ngOnInit() {
         this.getCurrentTabPage();
     }
     getCurrentTabPage() {
+        var that = this;
         chrome.tabs.executeScript({
             file: 'assets/js/background.js'
         }, function (doc) {
-            console.log(doc);            
+            console.log(doc);
+            that.links = doc[0];
+        });
+    }
+    download(index){
+        chrome.downloads.download({
+            url: this.links[index],
         });
     }
 }
